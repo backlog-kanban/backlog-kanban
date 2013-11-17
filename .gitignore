@@ -17,3 +17,5 @@
 
 # Inttelij Idea (RubyMine)
 .idea
+
+config/initializers/backlog_config.rb
