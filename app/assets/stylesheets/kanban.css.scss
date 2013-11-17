@@ -1,0 +1,31 @@
+// Place all the styles related to the kanban controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+#filter p {
+	float: left;
+}
+
+#filter ul li {
+	float: left;
+}
+
+#task_area ul {
+	float: left;
+	width: 25%;
+}
