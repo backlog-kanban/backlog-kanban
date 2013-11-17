@@ -69,7 +69,7 @@ h1 {
 			li {
 				margin: 5px;
 				width: 114px;
-				height: 140px; 
+				min-height: 140px; 
 				float: left;
 				background-image: url("other.png");
 				p {
@@ -98,3 +98,17 @@ h1 {
 	width: 275px; 
 	margin: -10px 0 0 -10px;
 }
+
+#task_area ul li p.summary {
+	height: 36px;
+	overflow: auto;
+}
+
+#task_area ul li p.star {
+	margin-left: 4px;
+}
+
+#task_area ul li p img {
+	margin-left: -4px;
+}
+

@@ -3,25 +3,24 @@
 		<%= image_tag status+".jpg" %>
 		<% result.each do |item| %>
 			<% if id == item["status"]["id"] %>
+			<% p "=============" %>
+			<% p item %>
 				<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] %>
-					<li class='hurry'>
+					<a href="<%= item['url'] %>"><li class='hurry'>
 				<% elsif item["components"].present? %>
-					<li class='task<%= item["components"].first["id"] %>'>
+					<a href="<%= item['url'] %>"><li class='task<%= item["components"].first["id"] %>'>
 				<% else %>
-					<li>
+					<a href="<%= item['url'] %>"><li>
 				<% end %>
 					<p class="due_date"><%= item["due_date"] %></p>
-					<p><%= item["summary"] %></p>
-					<p><%= item["assigner"]["name"] %><p>
-					<%#= image_tag "" %>
-					<% (1..5-item['priority']['id']).each do |n| %>
-						<%= image_tag "star.png" %>
-					<% end %>
-					<% p "===================="%>
-					<% p Time.now.strftime("%Y/%m/%d") %>
-					<% p item["due_date"] %>
-					<% p Time.now.strftime("%Y/%m/%d") > item["due_date"] %>
-				</li>
+					<p class="summary"><%= item["summary"] %></p>
+					<p><%= item["assigner"]["name"] %></p>
+					<p class="star">
+						<% (1..5-item['priority']['id']).each do |n| %>
+							<%= image_tag "star.png" %>
+						<% end %>
+					</p>
+				</li></a>
 			<% end %>
 		<% end %>
 	</ul>
