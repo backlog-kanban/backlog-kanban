@@ -3,9 +3,7 @@
 		<%= image_tag status+".jpg" %>
 		<% result.each do |item| %>
 			<% if id == item["status"]["id"] %>
-			<% p "=============" %>
-			<% p item %>
-				<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] %>
+				<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] && item["status"]["name"] != "完了" %>
 					<a href="<%= item['url'] %>"><li class='hurry'>
 				<% elsif item["components"].present? %>
 					<a href="<%= item['url'] %>"><li class='task<%= item["components"].first["id"] %>'>
@@ -16,7 +14,7 @@
 					<p class="summary"><%= item["summary"] %></p>
 					<p><%= item["assigner"]["name"] %></p>
 					<p class="star">
-						<% (1..5-item['priority']['id']).each do |n| %>
+						<% (1..5-item['priority']['id']).each do %>
 							<%= image_tag "star.png" %>
 						<% end %>
 					</p>

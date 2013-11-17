@@ -65,9 +65,9 @@ h1 {
 		min-height: 800px;
 		margin-bottom: 40px;
 		ul{
-			padding: 10px;
+			padding: 10px 0 10px 10px;
 			li {
-				margin: 5px;
+				margin: 7px;
 				width: 114px;
 				min-height: 140px; 
 				float: left;
@@ -77,9 +77,6 @@ h1 {
 					font-size: 12px;
 					color: #706B6A;
 				}
-				p.due_date {
-					height: 18px;
-				}
 			}
 		}
 	}
@@ -87,6 +84,14 @@ h1 {
 
 #task_area .kanban ul li.task1073914596 {
 	background-image: url("1073914596.png");
+}
+
+#task_area .kanban ul li.task1073914602 {
+	background-image: url("1073914602.png");
+}
+
+#task_area .kanban ul li.task1073914601 {
+	background-image: url("1073914601.png");
 }
 
 #task_area .kanban ul li.hurry {
