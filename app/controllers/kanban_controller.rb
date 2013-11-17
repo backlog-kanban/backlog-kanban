@@ -29,7 +29,11 @@ class KanbanController < ApplicationController
         #自分のタイムラインが表示される（重い）
         #result = client.call('backlog.getTimeline')
 
-        client.call('backlog.findIssue', {'projectId' => BacklogKanban::Application.config.project_id})
+        result = client.call('backlog.findIssue', {'projectId' => BacklogKanban::Application.config.project_id})
+
+        result.each do |issue|
+          issue['due_date'] = "#{issue['due_date'][0..3]}/#{issue['due_date'][4..5]}/#{issue['due_date'][6..7]}"
+        end
 
       rescue XMLRPC::FaultException => e
         puts "fault #{e.faultCode}: #{e.faultString}"
