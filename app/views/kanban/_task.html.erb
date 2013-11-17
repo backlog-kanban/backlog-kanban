@@ -2,10 +2,10 @@
 	<ul>
 		<%= image_tag status+".jpg" %>
 		<% result.each do |item| %>
-		<% p "=============" %>
-		<% p item %> 
 			<% if id == item["status"]["id"] %>
-				<% if item["components"].present? %>
+				<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] %>
+					<li class='hurry'>
+				<% elsif item["components"].present? %>
 					<li class='task<%= item["components"].first["id"] %>'>
 				<% else %>
 					<li>
@@ -17,6 +17,10 @@
 					<% (1..5-item['priority']['id']).each do |n| %>
 						<%= image_tag "star.png" %>
 					<% end %>
+					<% p "===================="%>
+					<% p Time.now.strftime("%Y/%m/%d") %>
+					<% p item["due_date"] %>
+					<% p Time.now.strftime("%Y/%m/%d") > item["due_date"] %>
 				</li>
 			<% end %>
 		<% end %>
