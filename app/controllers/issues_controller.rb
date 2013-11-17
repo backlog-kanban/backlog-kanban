@@ -1,18 +1,21 @@
+require 'xmlrpc/client'
+
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   # GET /issues
   # GET /issues.json
   def index
-    render :json => {'issue1' => {'subject' => 'foo', 'end_at' => '2013-11-18'},
-                     :issue2 => {'subject' => 'bar', 'end_at' => '2013-11-19'},
-                     :issue3 => {'subject' => 'hoge', 'end_at' => '2013-12-3'}}
+    @result = testapi
+    render :json => @result
   end
 
   # GET /issues/1
   # GET /issues/1.json
   def show
-    render :json => [1, 2, 3]
+    render :json => {'issue1' => {'subject' => 'foo', 'end_at' => '2013-11-18'},
+                     :issue2 => {'subject' => 'bar', 'end_at' => '2013-11-19'},
+                     :issue3 => {'subject' => 'hoge', 'end_at' => '2013-12-3'}}
   end
 
   # GET /issues/new
@@ -74,4 +77,34 @@ class IssuesController < ApplicationController
     def issue_params
       params[:issue]
     end
+
+    def testapi
+      host = 'kanban.backlog.jp'
+      path = '/XML-RPC'
+      port = '443'
+      proxy_host = nil
+      proxy_port = nil
+      user = 'api'
+      password = 'api1117'
+      use_ssl = true
+      timeout = 60
+
+      client = XMLRPC::Client.new(host, path, port, proxy_host, proxy_port, user, password, use_ssl, timeout)
+
+      begin
+        #プロジェクト情報が表示される
+        #result = client.call('backlog.getProject', プロジェクト番号)
+
+        #ユーザー情報が表示される
+        #result = client.call('backlog.getUsers', ユーザー番号 )
+
+        #自分のタイムラインが表示される（重い）
+        #result = client.call('backlog.getTimeline')
+        result = client.call('backlog.findIssue', {'projectId' => 1073817496})
+
+      rescue XMLRPC::FaultException => e
+        puts "fault #{e.faultCode}: #{e.faultString}"
+      end
+    end
+
 end
