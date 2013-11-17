@@ -7,5 +7,9 @@
 	</ul>
 </div>
 <div id="task_area">
-	<%= render partial: '/kanban/task.html' %>
+	<% ["todo","do","done","finish"].each do |status| %>
+		<ul>
+			<%= render partial: '/kanban/task', :status => status %>
+		</ul>
+	<% end %>
 </div>
