@@ -24,10 +24,5 @@ module BacklogKanban
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    config.host = 'kanban.backlog.jp'
-    config.project_id = 1073817496
-    config.user = 'api'
-    config.password = 'api1117'
   end
 end
