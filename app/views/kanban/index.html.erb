@@ -1,15 +1,14 @@
-<h1>Kanban</h1>
-<div id="filter" class="clearfix">
+<h1><%= image_tag "bg_header.png" %></h1>
+<!--div id="filter" class="clearfix">
 	<p>フィルタ:　</p>
 	<ul>
 		<li>自分の課題のみ</li>
 		<li>期限が過ぎた課題</li>
 	</ul>
-</div>
+</div-->
 <div id="task_area">
-	<% ["todo","do","done","finish"].each do |status| %>
-		<ul>
-			<%= render partial: '/kanban/task', :status => status %>
-		</ul>
+	<% ["todo","do","done","finish"].each_with_index do |status,id| %>
+		<%= render partial: '/kanban/task', :locals =>{:status => status, :result => @result, :id => id+1} %>
 	<% end %>
+
 </div>

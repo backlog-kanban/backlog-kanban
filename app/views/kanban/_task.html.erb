@@ -1,1 +1,17 @@
-<%= status %>
+<div class="kanban">
+	<ul>
+		<%= image_tag status+".jpg" %>
+		<% result.each do |item| %>
+			<% if id == item["status"]["id"] %>
+				<li class='<%= item["issueType"]["id"] %>'>
+					<p>
+						<%= item["due_date"] %>
+						<%= item["summary"] %>
+						<%= item["assigner"]["name"] %>
+						<%#= item["priority"]["id"] %>
+					</p>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>

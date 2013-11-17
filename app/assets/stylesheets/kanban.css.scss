@@ -25,7 +25,29 @@ li {
 	float: left;
 }
 
-#task_area ul {
-	float: left;
-	width: 25%;
+#task_area {
+	.kanban {
+		float: left;
+		width: 275px;
+		background-color: #d7f6eb;
+		margin-left: 20px;
+		min-height: 800px;
+		margin-bottom: 40px;
+		ul{
+			padding: 10px;
+			li {
+				padding: 5px;
+				width: 114px;
+				float: left;
+				p {
+					padding: 5px;
+				}
+			}
+		}
+	}
+}
+
+#task_area ul > img {
+	width: 275px; 
+	margin: -10px 0 0 -10px;
 }
