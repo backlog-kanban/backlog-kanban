@@ -6,6 +6,16 @@
 		<li>期限が過ぎた課題</li>
 	</ul>
 </div-->
+
+<div id="components">
+	<ul>
+		<li class="coding">コーディング</li>
+		<li class="design">デザイン</li>
+		<li class="back_end">バックエンド</li>
+		<li class="other">その他</li>
+	</ul>
+</div>
+
 <div id="task_area">
 	<% ["todo","do","done","finish"].each_with_index do |status,id| %>
 		<%= render partial: '/kanban/task', :locals =>{:status => status, :result => @result, :id => id+1} %>

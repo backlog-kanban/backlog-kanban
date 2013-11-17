@@ -11,10 +11,15 @@
 *{
 	margin: 0;
 	padding: 0;
+	background-size: 100% 100%; 
 }
 
 li {
 	list-style-type: none;
+}
+
+h1 {
+	font-size: 0;
 }
 
 #filter p {
@@ -25,10 +30,36 @@ li {
 	float: left;
 }
 
+#components ul {
+	text-align: right;
+	margin: 2px 19px 5px 0;
+	.coding {
+		background-color: #fdac38;
+	}
+	.design {
+		background-color: #f69dc7;
+	}
+	.back_end {
+		background-color: #4735b5;
+	}
+	.other {
+		background-color: #6a85a7;
+	}
+}
+
+#components li {
+	display: inline;
+	color: white;
+	padding: 5px 10px;
+	font-size: 10px;
+}
+
 #task_area {
 	.kanban {
 		float: left;
 		width: 275px;
+		background-image: url("bg_iconimg.png");
+		background-size: auto;
 		background-color: #d7f6eb;
 		margin-left: 20px;
 		min-height: 800px;
@@ -36,16 +67,28 @@ li {
 		ul{
 			padding: 10px;
 			li {
-				padding: 5px;
+				margin: 5px;
 				width: 114px;
+				height: 140px; 
 				float: left;
+				background-image: url("other.png");
 				p {
 					padding: 5px;
+					font-size: 12px;
+					color: #706B6A;
+				}
+				p.due_date {
+					height: 18px;
 				}
 			}
 		}
 	}
 }
+
+#task_area .kanban ul li.task1073914596 {
+	background-image: url("1073914596.png");
+}
+
 
 #task_area ul > img {
 	width: 275px; 
