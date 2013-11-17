@@ -1,25 +1,27 @@
-<div class="kanban">
-	<ul>
-		<%= image_tag status+".jpg" %>
-		<% result.each do |item| %>
-			<% if id == item["status"]["id"] %>
-				<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] && item["status"]["name"] != "完了" %>
-					<a href="<%= item['url'] %>"><li class='hurry'>
-				<% elsif item["components"].present? %>
-					<a href="<%= item['url'] %>"><li class='task<%= item["components"].first["id"] %>'>
-				<% else %>
-					<a href="<%= item['url'] %>"><li>
+<% ["todo","do","done","finish"].each_with_index do |status,id| %>
+	<div class="kanban">
+		<ul>
+			<%= image_tag status+".jpg" %>
+			<% result.each do |item| %>
+				<% if id+1 == item["status"]["id"] %>
+					<% if Time.now.strftime("%Y/%m/%d") > item["due_date"] && item["status"]["name"] != "完了" %>
+						<a href="<%= item['url'] %>"><li class='hurry'>
+					<% elsif item["components"].present? %>
+						<a href="<%= item['url'] %>"><li class='task<%= item["components"].first["id"] %>'>
+					<% else %>
+						<a href="<%= item['url'] %>"><li>
+					<% end %>
+						<p class="due_date"><%= item["due_date"] %></p>
+						<p class="summary"><%= item["summary"] %></p>
+						<p><%= item["assigner"]["name"] %></p>
+						<p class="star">
+							<% (1..5-item['priority']['id']).each do %>
+								<%= image_tag "star.png" %>
+							<% end %>
+						</p>
+					</li></a>
 				<% end %>
-					<p class="due_date"><%= item["due_date"] %></p>
-					<p class="summary"><%= item["summary"] %></p>
-					<p><%= item["assigner"]["name"] %></p>
-					<p class="star">
-						<% (1..5-item['priority']['id']).each do %>
-							<%= image_tag "star.png" %>
-						<% end %>
-					</p>
-				</li></a>
 			<% end %>
-		<% end %>
-	</ul>
-</div>
+		</ul>
+	</div>
+<% end %>

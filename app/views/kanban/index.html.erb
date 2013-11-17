@@ -17,8 +17,5 @@
 </div>
 
 <div id="task_area">
-	<% ["todo","do","done","finish"].each_with_index do |status,id| %>
-		<%= render partial: '/kanban/task', :locals =>{:status => status, :result => @result, :id => id+1} %>
-	<% end %>
-
+		<%= render partial: '/kanban/task', :locals =>{:result => @result} %>
 </div>
