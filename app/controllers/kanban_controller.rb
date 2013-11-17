@@ -1,17 +1,19 @@
 class KanbanController < ApplicationController
+  require 'xmlrpc/client'
+
   def index
     @result = testapi
   end
 
   private
     def testapi
-      host = 'kanban.backlog.jp'
+      host = BacklogKanban::Application.config.host
       path = '/XML-RPC'
       port = '443'
       proxy_host = nil
       proxy_port = nil
-      user = 'api'
-      password = 'api1117'
+      user = BacklogKanban::Application.config.user
+      password = BacklogKanban::Application.config.password
       use_ssl = true
       timeout = 60
 
@@ -26,7 +28,12 @@ class KanbanController < ApplicationController
 
         #自分のタイムラインが表示される（重い）
         #result = client.call('backlog.getTimeline')
-        result = client.call('backlog.findIssue', {'projectId' => 1073817496})
+
+        result = client.call('backlog.findIssue', {'projectId' => BacklogKanban::Application.config.project_id})
+
+        result.each do |issue|
+          issue['due_date'] = "#{issue['due_date'][0..3]}/#{issue['due_date'][4..5]}/#{issue['due_date'][6..7]}"
+        end
 
       rescue XMLRPC::FaultException => e
         puts "fault #{e.faultCode}: #{e.faultString}"
